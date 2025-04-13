@@ -1,0 +1,9 @@
+[client]
+showSidebarNavigation = false
+
+[theme]
+base="light"
+primaryColor="#728572"
+backgroundColor="#fbfcfc"
+secondaryBackgroundColor="#dae3da"
+fontFamily="Times New Roman, Times, serif"
