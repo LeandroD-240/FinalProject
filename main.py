@@ -328,6 +328,10 @@ def show_dashboard():
             )
         )
 
+    # Cambiar el color de los labels
+    for graph in [fig_bar, fig_line, fig_col, fig_pie]:
+      graph.update_layout(xaxis=dict(title_font=dict(color="black")), yaxis=dict(title_font=dict(color="black")))
+
     # Colocar y organizar los gráficos en la página
     st.plotly_chart(fig_pie, use_container_width=True)
     st.plotly_chart(fig_bar, use_container_width=True)
