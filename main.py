@@ -207,7 +207,7 @@ df_long.rename(columns={
 }, inplace=True)
     
 # Transformación a dataset largo
-df_long = df_long.melt(id_vars=["index"], var_name="Materiales", value_name="Producción")
+df_long = df_long.melt(id_vars=["index"], var_name="Materiales", value_name="Recolección")
 
 # Cambiar tipo de datos "Fecha" de 'object' a 'datetime'
 df["Fecha"] = pd.to_datetime(df["Fecha"])
@@ -245,15 +245,15 @@ def show_dashboard():
     # Agregar tarjetones con métricas relevantes
     col1, col2, col3 = st.columns(3)
 
-    # Tarjetón 1: Producción total filtrada
+    # Tarjetón 1: Recolección total filtrada
     produccion_total = df["plastico"].sum() + df["madera"].sum() + df["vidrio"].sum() + df["sargazo"].sum()
-    col1.metric("📦 Producción Total", f"{produccion_total:.2f} kg")
+    col1.metric("📦 Recolección Total", f"{produccion_total:.2f} kg")
 
-    # Tarjetón 2: Promedio de producción filtrado
+    # Tarjetón 2: Promedio de recolección filtrado
     promedio_produccion = filter.mean().sum()
-    col2.metric(f"📊 Promedio de Producción ({year})", f"{promedio_produccion:.2f} kg")
+    col2.metric(f"📊 Promedio de Recolección ({year})", f"{promedio_produccion:.2f} kg")
 
-    # Tarjetón 3: Producción de los últimos 12 meses filtrada
+    # Tarjetón 3: Recolección de los últimos 12 meses filtrada
     produccion_ultimos_12 = filter.tail(12).sum().sum()
     col3.metric("📅 Últimos 12 Meses", f"{produccion_ultimos_12:.2f} kg")
     
@@ -261,8 +261,8 @@ def show_dashboard():
     fig_bar = px.bar(
         df_long, 
         x="Materiales", 
-        y="Producción", 
-        labels={"Producción": "Producción (kg)", "variable": "Materiales"}, 
+        y="Recolección", 
+        labels={"Recolección": "Recolección (kg)", "variable": "Materiales"}, 
         title="Cantidad Total de Materiales Reciclados por Tipo", 
         barmode="group",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
@@ -273,7 +273,7 @@ def show_dashboard():
         filter, 
         x=filter.index, 
         y=["plastico", "madera", "vidrio", "sargazo"], 
-        labels={"value": "Producción (kg)"}, 
+        labels={"value": "Recolección (kg)"}, 
         title=f"Evolución de la Recolección de Materiales Reciclables en kg ({year})", 
         line_shape="spline", 
         markers=True
@@ -282,7 +282,7 @@ def show_dashboard():
     # Cambiar el título de la leyenda y el fondo del gráfico de línea
     fig_line.update_layout(legend_title="Materiales")
 
-    # Calcular la producción total por material
+    # Calcular la recolección total por material
     production_totals = filter[['vidrio', 'madera', 'plastico', 'sargazo']].sum()
 
     # Crear gráfico de pastel
@@ -304,9 +304,9 @@ def show_dashboard():
         y=["plastico", "madera", "vidrio", "sargazo"], 
         title="Tendencia Anual de Recolección de Materiales Reciclables (Últimos 5 Años)", 
         labels={
-            "value": "Producción (kg)", 
+            "value": "Recolección (kg)", 
             "variable": "Materiales", 
-            "Fecha": "Año de producción"
+            "Fecha": "Año de recolección"
         }, 
         barmode="stack",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
@@ -337,7 +337,7 @@ def show_dashboard():
     st.plotly_chart(fig_bar, use_container_width=True)
     st.plotly_chart(fig_line, use_container_width=True)
     st.plotly_chart(fig_col, use_container_width=True)
-    st.subheader("Datos de producción de los últimos 12 meses")
+    st.subheader("Datos de recolección de los últimos 12 meses")
     st.dataframe(df.tail(12).rename(columns={
         "plastico": "Plástico (kg)",
         "madera": "Madera (kg)",
@@ -469,7 +469,7 @@ def show_predictor_demanda():
         fig_line.add_trace(go.Scatter(
             x=total.index, y=total.values,
             mode='lines',
-            name='Producción (kg)',
+            name='Recolección (kg)',
             line=dict(color='#1C3D5A')
         ))
         
@@ -490,9 +490,9 @@ def show_predictor_demanda():
         ))
         
         fig_line.update_layout(
-            title=f"Producción y predicciones de materiales en kg (histórico total con prox. {meter} meses de predicción)",
+            title=f"Recolección y predicciones de materiales en kg (histórico total con prox. {meter} meses de predicción)",
             xaxis_title="Fecha",
-            yaxis_title="Producción kg",
+            yaxis_title="Recolección kg",
             legend_title="Series",
             template="plotly_white"
         )
