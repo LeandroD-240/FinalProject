@@ -497,7 +497,7 @@ def show_predictor_demanda():
         ))
         
         fig_line.update_layout(
-            title=f"Recolección y predicciones de materiales en kg (histórico total con prox. {meter} meses de predicción)",
+            title=go.layout.Title(f"Recolección y predicciones de materiales <br>en kg (histórico total con prox. {meter} meses de predicción)"),
             xaxis_title="Fecha",
             yaxis_title="Recolección kg",
             legend_title="Series",
