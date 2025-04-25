@@ -268,7 +268,7 @@ def show_dashboard():
     )
 
     # Agregar un título y subtítulo al gráfico de barras
-    fig_bar.update_layout(title=go.layout.Title(text="Cantidad Total de Materiales Reciclados <br>por Tipo"))
+    fig_bar.update_layout(title=go.layout.Title(text="<br>Cantidad Total de Materiales Reciclados <br>por Tipo"))
 
     # Agregar gráfico de línea
     fig_line = px.line(
@@ -297,7 +297,7 @@ def show_dashboard():
     )
 
     # Agregar un título y subtítulo al gráfico de pastel
-    fig_pie.update_layout(go.layout.Title(text=f"Proporción de Materiales Recolectados <br>por Tipo ({year})"))
+    fig_pie.update_layout(title=go.layout.Title(text=f"Proporción de Materiales Recolectados <br>por Tipo ({year})"))
 
     # Agrupar el dataset por año para el gráfico de columnas apilado
     col = df.groupby(df.index.strftime("%Y"))[["plastico", "madera", "vidrio", "sargazo"]].sum().iloc[-5:]
@@ -317,7 +317,7 @@ def show_dashboard():
     )
 
     # Agregar un título y subtítulo al gráfico de columnas apiladas
-    fig_col.update_layout(go.layout.Title(text="Tendencia Anual de Recolección de <br>Materiales Reciclables (Últimos 5 Años)"))
+    fig_col.update_layout(title=go.layout.Title(text="Tendencia Anual de Recolección de <br>Materiales Reciclables (Últimos 5 Años)"))
 
     # Cambiar los nombres de los materiales de la leyenda de 2 gráficos
     for graph in [fig_line, fig_col]:
