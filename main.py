@@ -263,10 +263,12 @@ def show_dashboard():
         x="Materiales", 
         y="Recolección", 
         labels={"Recolección": "Recolección (kg)", "variable": "Materiales"}, 
-        title="Cantidad Total de Materiales Reciclados por Tipo", 
         barmode="group",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
     )
+
+    # Agregar un título y subtítulo al gráfico de barras
+    fig_bar.update_layout(title=go.layout.Title(text="Cantidad Total de Materiales Reciclados <br>por Tipo"))
 
     # Agregar gráfico de línea
     fig_line = px.line(
@@ -278,9 +280,9 @@ def show_dashboard():
         markers=True
     )
        
-    # Cambiar el título de la leyenda y el fondo del gráfico de línea
+    # Cambiar el título de la leyenda, el fondo del gráfico de línea y el título
     fig_line.update_layout(legend_title="Materiales", title=go.layout.Title(
-      text=f"Evolución de Recolección de Materiales <br>Reciclables en kg ({year})"
+      text=f"<br>Evolución de Recolección de Materiales <br>Reciclables en kg ({year})"
     ))
 
     # Calcular la recolección total por material
@@ -291,9 +293,11 @@ def show_dashboard():
         production_totals,
         values=production_totals,
         names=production_totals.index,
-        title=f"Proporción de Materiales Recolectados por Tipo ({year})",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
     )
+
+    # Agregar un título y subtítulo al gráfico de pastel
+    fig_pie.layout_update(go.layout.Title(text=f"Proporción de Materiales Recolectados <br>por Tipo ({year})"))
 
     # Agrupar el dataset por año para el gráfico de columnas apilado
     col = df.groupby(df.index.strftime("%Y"))[["plastico", "madera", "vidrio", "sargazo"]].sum().iloc[-5:]
@@ -303,7 +307,6 @@ def show_dashboard():
         col, 
         x=col.index, 
         y=["plastico", "madera", "vidrio", "sargazo"], 
-        title="Tendencia Anual de Recolección de Materiales Reciclables (Últimos 5 Años)", 
         labels={
             "value": "Recolección (kg)", 
             "variable": "Materiales", 
@@ -312,6 +315,9 @@ def show_dashboard():
         barmode="stack",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
     )
+
+    # Agregar un título y subtítulo al gráfico de columnas apiladas
+    fig_col.layout_update(go.layout.Title(text="Tendencia Anual de Recolección de <br>Materiales Reciclables (Últimos 5 Años)"))
 
     # Cambiar los nombres de los materiales de la leyenda de 2 gráficos
     for graph in [fig_line, fig_col]:
