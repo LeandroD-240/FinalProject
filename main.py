@@ -280,7 +280,7 @@ def show_dashboard():
        
     # Cambiar el título de la leyenda y el fondo del gráfico de línea
     fig_line.update_layout(legend_title="Materiales", title=go.layout.Title(
-      text=f"Evolución de Recolección de Materiales Reciclables <sup>en kg ({year}</sup>)"
+      text=f"Evolución de Recolección de Materiales Reciclables <br><sup>en kg ({year})</sup></br>"
     ))
 
     # Calcular la recolección total por material
