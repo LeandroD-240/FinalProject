@@ -263,7 +263,8 @@ def show_dashboard():
         x="Materiales", 
         y="Recolección", 
         labels={"Recolección": "Recolección (kg)", "variable": "Materiales"}, 
-        title="Cantidad Total de Materiales Reciclados por Tipo", 
+        title="""Cantidad Total de Materiales Reciclados 
+          por Tipo""", 
         barmode="group",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
     )
@@ -274,7 +275,8 @@ def show_dashboard():
         x=filter.index, 
         y=["plastico", "madera", "vidrio", "sargazo"], 
         labels={"value": "Recolección (kg)"}, 
-        title=f"Evolución de la Recolección de Materiales Reciclables en kg ({year})", 
+        title=f"""Evolución de la Recolección de Materiales 
+          Reciclables en kg ({year})""", 
         line_shape="spline", 
         markers=True
     )
@@ -290,7 +292,8 @@ def show_dashboard():
         production_totals,
         values=production_totals,
         names=production_totals.index,
-        title=f"Proporción de Materiales Recolectados por Tipo ({year})",
+        title=f"""Proporción de Materiales Recolectados 
+          por Tipo ({year})""",
         color_discrete_sequence=["#1C3D5A", "#2A5D6D", "#A8A7A0", "#86A786"]
     )
 
@@ -302,7 +305,8 @@ def show_dashboard():
         col, 
         x=col.index, 
         y=["plastico", "madera", "vidrio", "sargazo"], 
-        title="Tendencia Anual de Recolección de Materiales Reciclables (Últimos 5 Años)", 
+        title="""Tendencia Anual de Recolección de 
+          Materiales Reciclables (Últimos 5 Años)""", 
         labels={
             "value": "Recolección (kg)", 
             "variable": "Materiales", 
