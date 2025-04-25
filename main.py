@@ -317,7 +317,7 @@ def show_dashboard():
     )
 
     # Agregar un título y subtítulo al gráfico de columnas apiladas
-    fig_col.update_layout(title=go.layout.Title(text="Tendencia Anual de Recolección de <br>Materiales Reciclables (Últimos 5 Años)"))
+    fig_col.update_layout(title=go.layout.Title(text="<br>Tendencia Anual de Recolección de <br>Materiales Reciclables (Últimos 5 Años)"))
 
     # Cambiar los nombres de los materiales de la leyenda de 2 gráficos
     for graph in [fig_line, fig_col]:
