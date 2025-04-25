@@ -274,18 +274,14 @@ def show_dashboard():
         x=filter.index, 
         y=["plastico", "madera", "vidrio", "sargazo"], 
         labels={"value": "Recolección (kg)"}, 
-        title=go.layout.Title(
-          text=f"Evolución de Recolección de Materiales <br>Reciclables en kg ({year})"
-        )
         line_shape="spline", 
         markers=True
     )
        
     # Cambiar el título de la leyenda y el fondo del gráfico de línea
-    fig_line.update_layout(legend_title="Materiales")
-    #fig_line.update_layout(legend_title="Materiales", title=go.layout.Title(
-    #  text=f"Evolución de Recolección de Materiales Reciclables <br><sup>en kg ({year})</sup></br>"
-    #))
+    fig_line.update_layout(legend_title="Materiales", title=go.layout.Title(
+      text=f"Evolución de Recolección de Materiales <br>Reciclables en kg ({year})"
+    ))
 
     # Calcular la recolección total por material
     production_totals = filter[['vidrio', 'madera', 'plastico', 'sargazo']].sum()
